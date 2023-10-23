@@ -1,3 +1,4 @@
+@use 'sass:color';
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -54,6 +55,7 @@ $maxWidth: 1000px;
 $mobileWidth: 480px;
 $tabletWidth: 740px;
 $mainColor: #FF6565;
+$mainColorAlt: color.adjust($mainColor, $lightness: 4%);
 
 $mainFont: source sans pro, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
@@ -67,9 +69,23 @@ button {
     background-color: $mainColor;
     border: none;
     border-radius: 3rem;
+    padding: 12px;
+    box-shadow: 1px 2px 10px #000000ac;
+    &:hover {
+        background-color: $mainColorAlt;
+    }
 }
 
-a {
+button a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+// Mixins
+
+@mixin hover-link {
+    // Use with <a> links
     text-decoration: none;
     color: #FFFFFF;
     font-family: $mainFont;
@@ -151,6 +167,9 @@ header {
             ul li {
                 margin: 0rem 1rem;
             }
+            a {
+                @include hover-link();
+            }
         }
     }
 
@@ -163,19 +182,13 @@ header {
             .mobile_nav {
                 display: grid;
                 padding: 0rem 1rem;
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: auto 1fr;
                 grid-template-rows: repeat(2, 1fr);
-                align-items: center;
-                justify-content: center;
-                align-content: center;
-                justify-items: center;
-                a {
-                    grid-column: 2 / 3;
-                    grid-row: 1 / 2;
-                }
+                place-items: center;
                 .hamburger_menu {
                     grid-row: 1 / 2;
                     grid-column: 1 / 2;
+                    padding: 10px;
                 }
                 ul {
                     grid-row: 2 / 3;
@@ -184,6 +197,9 @@ header {
                 ul,
                 ul li {
                     display: none;
+                }
+                a {
+                    @include hover-link();
                 }
             }
 
@@ -197,6 +213,13 @@ header {
                     display: flex;
                     flex-flow: column;
                     align-items: center;
+                }
+                a {
+                    grid-column: 2 / 3;
+                    grid-row: 1 / 2;
+                    &:hover {
+                        color: $mainColor;
+                    }
                 }
             }
         }
@@ -236,11 +259,6 @@ section.hero {
     }
     button {
         margin-top: 24px;
-    }
-    button a {
-        font-size: 1.5rem;
-        text-decoration: none;
-        color: #ffffff;
     }
     p {
         margin-top: 40px;
