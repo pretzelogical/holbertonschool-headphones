@@ -56,6 +56,7 @@ $mobileWidth: 480px;
 $tabletWidth: 740px;
 $mainColor: #FF6565;
 $mainColorAlt: color.adjust($mainColor, $lightness: 4%);
+$imgMatch0: #051428;
 
 $mainFont: source sans pro, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
@@ -145,13 +146,46 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
-    background-color: #051428;
+    background-color: $imgMatch0;
 }
+
+// Screenreader
+
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    // top: auto;
+    // width: 1px;
+    // height: 1px;
+    // overflow: hidden;
+}
+
+.sr-only:focus-within {
+    left: 0px;
+    width: auto;
+    height: auto;
+}
+
 
 // Header
 
 header {
     margin: 10px;
+
+    // Skip links
+    .skip-links {
+        top: 0px;
+        padding: 12px;
+        width: fit-content;
+        background-color: $imgMatch0;
+        border-bottom: solid 6px $mainColor;
+        border-right: solid 6px $mainColor;
+        border-bottom-right-radius: 12px;
+        a {
+            font-size: 1.2rem;
+            @include hover-link();
+        }
+    }
     nav {
         display: flex;
         justify-content: space-around;
