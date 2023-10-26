@@ -1,0 +1,391 @@
+@use 'sass:color';
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ^^^ Reset CSS ^^^ */
+
+// Fonts
+
+@font-face {
+    font-family: source sans pro;
+    src: url(/font/SourceSansPro-Regular.otf);
+}
+
+@font-face {
+    font-family: source sans pro bold;
+    src: url(/font/SourceSansPro-Bold.otf);
+}
+
+@font-face {
+    font-family: holbertonschool_icons;
+    src: url(/font/holberton_school-icon.ttf);
+}
+
+/* NOTE: SASS was used in the creation process of this css file  */
+$maxWidth: 1000px;
+$mobileWidth: 480px;
+$tabletWidth: 740px;
+$paraMobileWidth: 350px;
+$mainColor: #FF6565;
+$mainColorAlt: color.adjust($mainColor, $lightness: 4%);
+$imgMatch0: #051428;
+
+$mainFont: source sans pro, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$mainFontBold: source sans pro bold, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+/* Global styles */
+
+a, p {
+    font-family: $mainFont;
+}
+
+h1, h2, h4, button {
+    font-family: $mainFontBold;
+}
+
+.holbIcon {
+    font-family: holbertonschool_icons;
+}
+
+button {
+    background-color: $mainColor;
+    border: none;
+    border-radius: 3rem;
+    padding: 10px 20px;
+    box-shadow: 1px 2px 10px #000000ac;
+    &:hover {
+        background-color: $mainColorAlt;
+    }
+}
+
+button a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+// Mixins
+
+@mixin hover-link {
+    // Use with <a> links
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: $mainFont;
+    font-weight: bold;
+    font-size: 0.8rem;
+    word-spacing: 3px;
+    white-space: nowrap;
+    &:hover {
+        color: $mainColor;
+    }
+}
+
+// Hamburger menu
+
+.hamburger_menu {
+    stroke: white;
+    stroke-width: 5%;
+    cursor: pointer;
+    $rotateAmount: 45deg;
+    .hamburger_bar-top {
+        transform: translateY(-40%);
+        transition-property: transform;
+        transition-duration: 0.3s;
+    }
+    .hamburger_bar-mid {
+        transition-property: transform;
+        transition-duration: 0.3s;
+    }
+    .hamburger_bar-bot {
+        transition-property: transform;
+        transition-duration: 0.3s;
+        transform: translateY(40%);
+    }
+    &:focus {
+        .hamburger_bar-top {
+            transform: rotate($rotateAmount) translateX(10%) translateY(-50%);
+        }
+        .hamburger_bar-mid {
+            transform: scaleX(0);
+        }
+        .hamburger_bar-bot {
+            transform: rotate(-$rotateAmount) translateX(-50%) translateY(10%);
+        }
+    }
+}
+
+// Width based
+
+section.hero {
+    max-width: $maxWidth;
+}
+
+.contentPara {
+    width: 680px;
+    text-align: center;
+    line-height: 24px;
+}
+
+// Body
+
+body {
+    background-image: url("./images/headphones_hero_1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-color: $imgMatch0;
+    @media (max-width: $mobileWidth) {
+        background-size: cover;
+        background-position: left -1300px top -150px;
+    }
+}
+
+// Screenreader
+
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    // top: auto;
+    // width: 1px;
+    // height: 1px;
+    // overflow: hidden;
+}
+
+.sr-only:focus-within {
+    left: 0px;
+    width: auto;
+    height: auto;
+}
+
+
+// Header
+
+header {
+    margin: 10px;
+
+    // Skip links
+    .skip-links {
+        top: 0px;
+        padding: 12px;
+        width: fit-content;
+        background-color: $imgMatch0;
+        border-bottom: solid 6px $mainColor;
+        border-right: solid 6px $mainColor;
+        border-bottom-right-radius: 12px;
+        a {
+            font-size: 1.2rem;
+            @include hover-link();
+        }
+    }
+    nav {
+        display: flex;
+        justify-content: space-around;
+        .hamburger_menu {
+            display: none;
+        }
+        ul {
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+        }
+        ul li {
+            margin: 0rem 1rem;
+        }
+        a {
+            @include hover-link();
+            }
+    }
+
+    // Mobile modifications
+    @media (max-width: $mobileWidth) {
+        nav {
+            display: grid;
+            padding: 0rem 1rem;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            place-items: center;
+            .hamburger_menu {
+                display: block;
+                grid-row: 1 / 2;
+                grid-column: 1 / 2;
+                padding: 10px;
+            }
+            ul {
+                grid-row: 2 / 3;
+                grid-column: 1 / 3;
+            }
+            ul,
+            ul li {
+                display: none;
+            }
+            a {
+                @include hover-link();
+            }
+
+            &:focus-within {
+                // background-color: red;
+                ul li {
+                    display: block;
+                    margin: 0.5rem 0rem;
+                }
+                ul {
+                    display: flex;
+                    flex-flow: column;
+                    align-items: center;
+                }
+                a {
+                    grid-column: 2 / 3;
+                    grid-row: 1 / 2;
+                }
+            }
+        }
+    }
+}
+
+// Main
+
+main {
+    margin-top: 200px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+// Hero section
+
+section.hero {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+    margin-bottom: 180px;
+    div.heroHeader {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        h1 {
+            font-family: $mainFontBold;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        p.heroSubtitle {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    }
+    button {
+        margin-top: 70px;
+        a {
+            font-family: $mainFontBold;
+        }
+    }
+    p {
+        margin-top: 80px;
+    }
+    @media (max-width: $mobileWidth) {
+
+        div.heroHeader, p {
+            width: $paraMobileWidth;
+        }
+    }
+}
+
+// What we do section
+section.whatWeDo {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    h2, div.whatWeDo__cardDeck {
+        max-width: $maxWidth;
+    }
+    h2 {
+        margin-top: 70px;
+        margin-bottom: 45px;
+        font-size: 1.8rem;
+    }
+    @media (max-width: $mobileWidth) {
+        p {
+            width: $paraMobileWidth;
+        }
+    }
+}
+
+div.whatWeDo__cardDeck {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 100px 0px;
+    @media (max-width: $mobileWidth) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+    row-gap: 69px;
+    }
+}
+
+div.whatWeDo__card {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    h4 {
+        font-size: 1.3rem;
+        margin: 24px 0px;
+    }
+    p.holbIcon {
+        font-size: 6rem;
+        color: $mainColor;
+        width: auto;
+    }
+    p {
+        width: 245px;
+    }
+}
