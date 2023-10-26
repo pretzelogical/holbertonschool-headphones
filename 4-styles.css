@@ -140,6 +140,23 @@ section.hero {
   }
 }
 
+.screenWidthReactiveGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1220px) {
+  .screenWidthReactiveGrid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .screenWidthReactiveGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+}
+
 body {
   background-image: url("./images/headphones_hero_1.jpg");
   background-size: cover;
@@ -328,16 +345,16 @@ section.whatWeDo h2 {
 }
 
 div.whatWeDo__cardDeck {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 110px;
   place-content: center;
   margin: 100px 0px;
 }
+@media (max-width: 1220px) {
+  div.whatWeDo__cardDeck {
+    gap: 38px;
+  }
+}
 @media (max-width: 480px) {
   div.whatWeDo__cardDeck {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
     row-gap: 69px;
   }
 }
@@ -379,16 +396,17 @@ section.ourResults h2 {
 }
 
 .ourResults__pentaDeck {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
   column-gap: 160px;
   margin: 80px 0px;
 }
+@media (max-width: 1220px) {
+  .ourResults__pentaDeck {
+    gap: 20px;
+  }
+}
 @media (max-width: 480px) {
   .ourResults__pentaDeck {
-    grid-template-columns: 1fr;
     row-gap: 20px;
-    grid-template-rows: repeat(4, 1fr);
   }
 }
 
