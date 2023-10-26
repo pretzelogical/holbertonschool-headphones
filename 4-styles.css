@@ -65,14 +65,22 @@ table {
   font-family: holbertonschool_icons;
   src: url(/font/holberton_school-icon.ttf);
 }
+@font-face {
+  font-family: source sans pro semibold;
+  src: url(/font/SourceSansPro-Semibold.otf);
+}
 /* NOTE: SASS was used in the creation process of this css file  */
 /* Global styles */
 a, p {
   font-family: source sans pro, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-h1, h2, h4, button, label, legend, button a {
+h1, button, label, button a {
   font-family: source sans pro bold, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+h2, h4, legend {
+  font-family: source sans pro semibold, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .holbIcon {
@@ -161,8 +169,13 @@ body {
   background-image: url("./images/headphones_hero_1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: left -1300px top -200px;
   background-color: #051428;
+}
+@media (max-width: 1220px) {
+  body {
+    background-position: left -1900px top -200px;
+  }
 }
 @media (max-width: 480px) {
   body {
@@ -401,7 +414,7 @@ section.ourResults h2 {
 }
 @media (max-width: 1220px) {
   .ourResults__pentaDeck {
-    gap: 20px;
+    gap: 130px;
   }
 }
 @media (max-width: 480px) {
